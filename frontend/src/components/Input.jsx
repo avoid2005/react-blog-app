@@ -1,5 +1,7 @@
-const Input = (props) => {
-  const { htmlFor, labelText, type, placeholder, onChange } = props
+/* eslint-disable react/prop-types */
+
+export default function Input(props) {
+  const { htmlFor, labelText, type, placeholder, onChange } = props;
 
   return (
     <div className="flex flex-col">
@@ -10,13 +12,11 @@ const Input = (props) => {
         type={type}
         name={htmlFor}
         id={htmlFor}
-        className="border border-slate-400 px-3 py-2 text-slate-900 text-sm outline-none"
+        className="border border-white px-3 py-2 text-sm outline-none rounded-md bg-orange-100 bg-opacity-30 placeholder:text-slate-500"
         onChange={(e) => onChange(e)}
         placeholder={placeholder}
         required
       />
     </div>
-  )
+  );
 }
-
-export default Input

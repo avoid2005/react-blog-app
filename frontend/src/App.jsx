@@ -1,18 +1,18 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Pages
-import Home from "./pages/Home"
-import Welcome from "./pages/Welcome"
-import AddPost from "./pages/AddPost"
-import SignUp from "./pages/SignUp"
-import SignIn from "./pages/SignIn"
-import MyPosts from "./pages/MyPosts"
-import Clear from "./Clear"
-import PostDetail from "./pages/PostDetail"
-import EditPost from "./pages/EditPost"
-import HomeLayout from "./layouts/HomeLayout"
+import Home from "./pages/Home";
+import Welcome from "./pages/Welcome";
+import AddPost from "./pages/AddPost";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
+import MyPosts from "./pages/MyPosts";
+import Clear from "./Clear";
+import PostDetail from "./pages/PostDetail";
+import EditPost from "./pages/EditPost";
+import HomeLayout from "./layouts/HomeLayout";
 
-const App = () => {
+export default function App() {
   return (
     <>
       <Router>
@@ -31,7 +31,5 @@ const App = () => {
         </Routes>
       </Router>
     </>
-  )
+  );
 }
-
-export default App

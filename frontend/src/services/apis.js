@@ -1,6 +1,6 @@
 const url = "http://localhost:5000/api";
 
-export const userSignUpApi = async (newUser) => {
+export async function userSignUpApi(newUser) {
   const request = await fetch(`${url}/users/signup`, {
     method: "POST",
     headers: {
@@ -16,9 +16,9 @@ export const userSignUpApi = async (newUser) => {
       message: responseData.message,
     };
   else return false;
-};
+}
 
-export const userSignInApi = async (user) => {
+export async function userSignInApi(user) {
   const request = await fetch(`${url}/users/signin`, {
     method: "POST",
     headers: {
@@ -34,9 +34,9 @@ export const userSignInApi = async (user) => {
       message: responseData.message,
     };
   else return false;
-};
+}
 
-export const getUserDataById = async (id) => {
+export async function getUserDataById(id) {
   const request = await fetch(`${url}/users/data/${id}`);
   const responseData = await request.json();
   if (responseData)
@@ -46,9 +46,9 @@ export const getUserDataById = async (id) => {
       message: responseData.message ? responseData.message : null,
     };
   else return false;
-};
+}
 
-export const getAllPosts = async () => {
+export async function getAllPosts() {
   const request = await fetch(`${url}/allposts`);
   const responseData = await request.json();
   if (responseData)
@@ -57,9 +57,9 @@ export const getAllPosts = async () => {
       allPosts: responseData,
     };
   else return false;
-};
+}
 
-export const sendNewPost = async (id, newPost) => {
+export async function sendNewPost(id, newPost) {
   const request = await fetch(`${url}/users/newpost/${id}`, {
     method: "POST",
     headers: {
@@ -74,9 +74,9 @@ export const sendNewPost = async (id, newPost) => {
       message: responseData.message,
     };
   else return false;
-};
+}
 
-export const getPostDetail = async (postId) => {
+export async function getPostDetail(postId) {
   const request = await fetch(`${url}/allposts/${postId}`);
   const responseData = await request.json();
   if (responseData)
@@ -85,9 +85,9 @@ export const getPostDetail = async (postId) => {
       detailPost: responseData,
     };
   else return false;
-};
+}
 
-export const sendUpdatedPost = async (id, postId, updatedPost) => {
+export async function sendUpdatedPost(id, postId, updatedPost) {
   const request = await fetch(`${url}/edit/${id}/${postId}`, {
     method: "PUT",
     headers: {
@@ -102,12 +102,12 @@ export const sendUpdatedPost = async (id, postId, updatedPost) => {
       message: responseData.message,
     };
   else return false;
-};
+}
 
-export const deletePost = async (id, postId) => {
+export async function deletePost(id, postId) {
   const request = await fetch(`${url}/delete/${id}/${postId}`, {
     method: "DELETE",
   });
   if (request.ok) return { status: request.status };
   else return false;
-};
+}

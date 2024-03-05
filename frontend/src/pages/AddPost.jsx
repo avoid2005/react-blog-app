@@ -5,7 +5,7 @@ import { getUserDataById, sendNewPost } from "../services/apis";
 // Components
 import CreatePostForm from "../components/CreatePostForm";
 
-const AddPost = () => {
+export default function AddPost() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState([]);
@@ -50,6 +50,4 @@ const AddPost = () => {
       textButton={"Send Post"}
     />
   );
-};
-
-export default AddPost;
+}

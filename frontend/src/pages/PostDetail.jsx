@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
-import { getPostDetail } from "../services/apis"
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { getPostDetail } from "../services/apis";
 
-const PostDetail = () => {
-  const navigate = useNavigate()
-  const { postId } = useParams()
-  const [loading, setLoading] = useState(true)
-  const [postDetail, setPostDetail] = useState({})
+export default function PostDetail() {
+  const navigate = useNavigate();
+  const { postId } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [postDetail, setPostDetail] = useState({});
 
   useEffect(() => {
     const getPostDetailNow = async () => {
-      const response = await getPostDetail(postId)
+      const response = await getPostDetail(postId);
       if (response.status === 200) {
-        setPostDetail(response.detailPost)
-        setLoading(false)
+        setPostDetail(response.detailPost);
+        setLoading(false);
       }
-    }
-    getPostDetailNow()
-  }, [postId])
+    };
+    getPostDetailNow();
+  }, [postId]);
 
   return (
     <>
@@ -43,7 +43,5 @@ const PostDetail = () => {
         </div>
       )}
     </>
-  )
+  );
 }
-
-export default PostDetail

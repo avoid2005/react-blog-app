@@ -1,34 +1,42 @@
-import { Link, useNavigate } from "react-router-dom"
-import { deletePost } from "../services/apis"
+/* eslint-disable react/prop-types */
 
-const PostList = ({ posts, title, loading, data, typePost }) => {
-  const navigate = useNavigate()
+import { Link, useNavigate } from "react-router-dom";
+import { deletePost } from "../services/apis";
+import PostListSkeleton from "./Skeleton/PostListSkeleton";
+
+export default function PostList(props) {
+  const { posts, title, loading, data, typePost } = props;
+  const navigate = useNavigate();
 
   const handleDeletePost = (id, postId) => {
-    const seriously = confirm("Are You Sure ?")
-    if (!seriously) return
+    const seriously = confirm("Are You Sure ?");
+    if (!seriously) return;
     else {
       const deletePostNow = async () => {
-        await deletePost(id, postId)
-        navigate(0)
-      }
-      deletePostNow()
+        await deletePost(id, postId);
+        navigate(0);
+      };
+      deletePostNow();
     }
-  }
+  };
 
   if (loading === false && posts?.length === 0)
     return (
       <h2 className="text-2xl font-bold text-slate-700 text-center my-4">
         {title} is Empty
       </h2>
-    )
+    );
 
   return (
     <>
       {loading ? (
-        <h2 className="text-2xl font-bold text-slate-700 text-center my-4">
-          Loading . . .
-        </h2>
+        <div className="text-center my-4">
+          {typePost === "myPosts" ? (
+            <PostListSkeleton count={1} typePost="myPosts" />
+          ) : (
+            <PostListSkeleton count={1} />
+          )}
+        </div>
       ) : (
         <div className="mx-4 my-6">
           <h2 className="text-2xl font-bold text-slate-700 text-center my-4">
@@ -40,11 +48,10 @@ const PostList = ({ posts, title, loading, data, typePost }) => {
               key={post.postId}
             >
               <div
-                className={`px-4 flex flex-col justify-center items-center ${
-                  typePost === "myPosts"
+                className={`px-4 flex flex-col justify-center items-center ${typePost === "myPosts"
                     ? "sm:items-start"
                     : "sm:items-center mx-auto"
-                }`}
+                  }`}
               >
                 <Link
                   className={`font-bold hover:underline`}
@@ -79,7 +86,5 @@ const PostList = ({ posts, title, loading, data, typePost }) => {
         </div>
       )}
     </>
-  )
+  );
 }
-
-export default PostList

@@ -1,20 +1,18 @@
-import { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Clear = () => {
-  const navigate = useNavigate()
+export default function Clear() {
+  const navigate = useNavigate();
   useEffect(() => {
     const clearAllData = async () => {
-      const url = import.meta.env.VITE_BASEURL
-      const request = await fetch(`${url}/clear`)
-      const response = await request.json()
+      const url = "http://localhost:5000/api";
+      const request = await fetch(`${url}/clear`);
+      const response = await request.json();
       if (response.status === 200) {
-        localStorage.removeItem("blogAppSessionId")
-        navigate("/")
+        localStorage.removeItem("blogAppSessionId");
+        navigate("/");
       }
-    }
-    clearAllData()
-  })
+    };
+    clearAllData();
+  });
 }
-
-export default Clear

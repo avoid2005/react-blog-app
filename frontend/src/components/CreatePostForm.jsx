@@ -1,27 +1,23 @@
 /* eslint-disable react/prop-types */
 
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function CreatePostForm({
-  onSubmitHandler,
-  defaultTitle,
-  defaultBodyText,
-  textButton,
-}) {
-  const navigate = useNavigate()
-  const [title, setTitle] = useState("")
-  const [bodyText, setBodyText] = useState("")
+export default function CreatePostForm(props) {
+  const { onSubmitHandler, defaultTitle, defaultBodyText, textButton } = props
+  const navigate = useNavigate();
+  const [title, setTitle] = useState("");
+  const [bodyText, setBodyText] = useState("");
 
   useEffect(() => {
-    setTitle(defaultTitle)
-    setBodyText(defaultBodyText)
-  }, [defaultTitle, defaultBodyText])
+    setTitle(defaultTitle);
+    setBodyText(defaultBodyText);
+  }, [defaultTitle, defaultBodyText]);
 
   return (
-    <div className="w-screen h-screen flex flex-col overflow-x-hidden">
+    <div className="w-100% h-100% flex flex-col overflow-x-hidden">
       <form
-        className="flex flex-col px-6 py-3 w-[90%]"
+        className="flex flex-col px-6 py-3 w-[80%] mx-auto"
         onSubmit={(e) => onSubmitHandler({ e, title, bodyText })}
       >
         <div className="flex flex-col mb-4">
@@ -29,7 +25,7 @@ export default function CreatePostForm({
             type="text"
             onChange={(e) => setTitle(e.target.value)}
             value={title}
-            className="outline-none px-3 py-2 text-sm w-full border"
+            className="outline-none px-3 py-2 text-sm w-full border focus:ring focus:ring-slate-400"
             name="title"
             id="title"
             placeholder="Title"
@@ -42,9 +38,9 @@ export default function CreatePostForm({
             value={bodyText}
             name="body-text"
             id="body-text"
-            cols="30"
+            cols="20"
             rows="20"
-            className="outline-none px-3 py-2 text-sm w-full border resize-none"
+            className="outline-none px-3 py-2 text-sm w-full border resize-none focus:ring focus:ring-slate-400"
             placeholder="Input Your Text , Whatever You Want . . ."
             required
           ></textarea>
@@ -67,10 +63,10 @@ export default function CreatePostForm({
         </div>
       </form>
     </div>
-  )
+  );
 }
 
 CreatePostForm.defaultProps = {
   defaultTitle: "",
   defaultBodyText: "",
-}
+};

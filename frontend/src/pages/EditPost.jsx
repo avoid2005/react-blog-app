@@ -1,48 +1,48 @@
-import { useState, useEffect } from "react"
-import { useNavigate, useParams } from "react-router-dom"
-import { getPostDetail, sendUpdatedPost } from "../services/apis"
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getPostDetail, sendUpdatedPost } from "../services/apis";
 
 // Components
-import CreatePostForm from "../components/CreatePostForm"
+import CreatePostForm from "../components/CreatePostForm";
 
-const EditPost = () => {
-  const navigate = useNavigate()
-  const { id, postId } = useParams()
-  const [defaultTitle, setDefaultTitle] = useState("")
-  const [defaultBodyText, setDefaultBodyText] = useState("")
-  const [post, setPost] = useState({})
+export default function EditPost() {
+  const navigate = useNavigate();
+  const { id, postId } = useParams();
+  const [defaultTitle, setDefaultTitle] = useState("");
+  const [defaultBodyText, setDefaultBodyText] = useState("");
+  const [post, setPost] = useState({});
 
   const handleSubmitPost = ({ e, title, bodyText }) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const sendUpdatedPostNow = async () => {
-      console.log(title, bodyText)
-      if (!title || !bodyText) return
+      console.log(title, bodyText);
+      if (!title || !bodyText) return;
 
-      const updatedPost = { ...post, title, bodyText }
+      const updatedPost = { ...post, title, bodyText };
 
-      const response = await sendUpdatedPost(id, postId, updatedPost)
+      const response = await sendUpdatedPost(id, postId, updatedPost);
       if (response.status === 200) {
-        alert(response.message)
-        navigate(-1)
+        alert(response.message);
+        navigate(-1);
       }
-    }
+    };
 
-    sendUpdatedPostNow()
-  }
+    sendUpdatedPostNow();
+  };
 
   useEffect(() => {
     const getPostDetailForDefaultValue = async () => {
-      const response = await getPostDetail(postId)
+      const response = await getPostDetail(postId);
       if (response.status === 200) {
-        setDefaultTitle(response.detailPost.title)
-        setDefaultBodyText(response.detailPost.bodyText)
-        setPost(response.detailPost)
+        setDefaultTitle(response.detailPost.title);
+        setDefaultBodyText(response.detailPost.bodyText);
+        setPost(response.detailPost);
       }
-    }
+    };
 
-    getPostDetailForDefaultValue()
-  }, [postId])
+    getPostDetailForDefaultValue();
+  }, [postId]);
 
   return (
     <CreatePostForm
@@ -53,7 +53,5 @@ const EditPost = () => {
       defaultBodyText={defaultBodyText}
       textButton={"Update Post"}
     />
-  )
+  );
 }
-
-export default EditPost

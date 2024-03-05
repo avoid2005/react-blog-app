@@ -1,16 +1,16 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 // Components
-import Button from "../components/Button"
-import { useEffect } from "react"
+import Button from "../components/Button";
+import { useEffect } from "react";
 
-const Welcome = () => {
-  const navigate = useNavigate()
+export default function Welcome() {
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const sessionId = localStorage.getItem("blogAppSessionId")
-    if (sessionId) navigate(`/home/${sessionId}`)
-  }, [navigate])
+    const sessionId = localStorage.getItem("blogAppSessionId");
+    if (sessionId) navigate(`/home/${sessionId}`);
+  }, [navigate]);
 
   return (
     <div className="max-w-[500px] mx-auto my-10 text-center">
@@ -30,7 +30,5 @@ const Welcome = () => {
         <Button onClick={() => navigate("/users/signin")}>Login</Button>
       </div>
     </div>
-  )
+  );
 }
-
-export default Welcome

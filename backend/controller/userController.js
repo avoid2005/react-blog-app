@@ -26,7 +26,7 @@ export const handleUserSignUp = (req, res) => {
   if (!duplicateUser) {
     const id = v4();
     addUser(newUser, id);
-    writeLog("", "");
+    writeLog("userSignUp", { newUser, id });
     res.status(201).json({ id, message: "Successfully registered" });
   } else {
     let duplicateType;
@@ -53,6 +53,7 @@ export const handleUserSignIn = (req, res) => {
   } else {
     const matchPassword = bcrypt.compareSync(user.password, takeUser.password);
     if (matchPassword) {
+      writeLog("userSignIn", { takeUser, id: takeUser.id });
       res.status(200).json({
         id: takeUser.id,
         message: "Login successfull",
