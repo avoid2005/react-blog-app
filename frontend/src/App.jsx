@@ -11,12 +11,14 @@ import Clear from "./Clear";
 import PostDetail from "./pages/PostDetail";
 import EditPost from "./pages/EditPost";
 import HomeLayout from "./layouts/HomeLayout";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
     <>
       <Router>
         <Routes>
+          <Route path="/*" element={<NotFound />} />
           <Route path="/clear" element={<Clear />} />
           <Route path="/" element={<Welcome />} />
           <Route path="/users/signup" element={<SignUp />} />

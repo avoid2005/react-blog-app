@@ -14,11 +14,10 @@ export default function PostListSkeleton({ count, typePost }) {
           key={i}
         >
           <div
-            className={`px-4 flex flex-col justify-center items-center ${
-              typePost === "myPosts"
+            className={`px-4 flex flex-col justify-center items-center ${typePost === "myPosts"
                 ? "sm:items-start"
                 : "sm:items-center mx-auto"
-            }`}
+              }`}
           >
             <button
               className={`font-bold hover:underline bg-slate-400 px-10 py-2 inline-block`}

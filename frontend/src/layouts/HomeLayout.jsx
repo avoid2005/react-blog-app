@@ -19,11 +19,20 @@ export default function HomeLayout() {
     };
     fetchDataById();
   }, [id]);
+
   return (
     <>
       <header className="flex justify-between items-center bg-slate-200 px-4 py-4 font-inter">
         <h1 className="text-xl font-bold">Welcome {data.username}</h1>
-        <nav className="">
+        <nav className="flex items-center">
+          <div className="mx-4 flex items-center">
+            <div className="text-slate-700 text-sm mx-2">Light</div>
+            <div
+              className={`w-12 h-6 bg-slate-400 rounded-full cursor-pointer flex`}
+            >
+              <div className="w-6 h-6 rounded-full bg-slate-900"></div>
+            </div>
+          </div>
           <Button styles={"mx-1"} onClick={() => navigate(`/home/${data.id}`)}>
             Home
           </Button>
