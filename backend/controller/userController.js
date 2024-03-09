@@ -15,7 +15,7 @@ makeFolder([rootDbFolder, usersDbFolder, postsDbFolder, eachUserDbFolder]);
 // Database File Location
 const allUsersDbFile = "./db/users/allUsers.json";
 const allPostsDbFile = "./db/posts/allPosts.json";
-makeFile([allPostsDbFile, allPostsDbFile]);
+makeFile([allUsersDbFile, allPostsDbFile]);
 
 export const handleUserSignUp = (req, res) => {
   const newUser = req.body;
